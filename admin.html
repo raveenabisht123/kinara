@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
-<script src="config.js?v=2"></script>
+<script src="config.js?v=3"></script>
 <style>
 /* Layout: PolicyPilot-style admin. Top nav, page title + primary action, 4 folder cards and a leads table on the left; status bar card and a blue sources card on the right. */
 :root{
@@ -273,7 +273,8 @@ input[type=checkbox]{width:15px;height:15px;accent-color:var(--blue);cursor:poin
 
   /* State */
   var S = { leads:[], demo:true, folder:'all', q:'', status:'', sort:'received_at', dir:-1, sel:{} };
-  var endpoint = function(){ return ls('kl_endpoint') || window.KINARA_ENDPOINT || ''; };
+  var okUrl = function(u){ return /^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec$/.test(u||''); };
+  var endpoint = function(){ var u = ls('kl_endpoint'); if (u && !okUrl(u)) { ls('kl_endpoint', null); u = ''; } return u || window.KINARA_ENDPOINT || ''; };
   var key = function(){ return ls('kl_key') || ''; };
 
   function sourceOf(l){
@@ -490,7 +491,7 @@ input[type=checkbox]{width:15px;height:15px;accent-color:var(--blue);cursor:poin
       +'<p class="muted" style="margin:0;font-size:12.5px">Setup steps are at the top of <a href="apps-script.gs" target="_blank" rel="noopener">apps-script.gs</a>.</p>';
     d.hidden=false; $('scrim').hidden=false;
     $('drX').onclick=closeDrawer;
-    $('setSave').onclick=function(){ var u=$('setUrl').value.trim(), k=$('setKey').value.trim(); if (u && !/^https:\/\/script\.google(usercontent)?\.com\//.test(u)) { toast('That does not look like an Apps Script Web app URL'); return; } ls('kl_endpoint', u||null); ls('kl_key', k||null); closeDrawer(); load(); };
+    $('setSave').onclick=function(){ var u=$('setUrl').value.trim(), k=$('setKey').value.trim(); if (u && !okUrl(u)) { toast('Use the Web app URL that starts with https://script.google.com/macros/s/ and ends in /exec'); return; } ls('kl_endpoint', u||null); ls('kl_key', k||null); closeDrawer(); load(); };
     $('setClear').onclick=function(){ ls('kl_key',null); closeDrawer(); load(); };
   }
 
