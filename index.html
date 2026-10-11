@@ -9,13 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap">
 
+<script src="config.js"></script>
 <script>
 /* ===== Tracking: replace XXXX placeholders. Scripts only load once real IDs are in. ===== */
 window.KINARA_CFG = {
   META_PIXEL_ID: "XXXXXXXXXXXXXXX",
   GA4_ID: "G-XXXXXXXXXX",
   GADS_ID: "AW-XXXXXXXXX",
-  FORM_ENDPOINT: "https://XXXX-your-crm-or-apps-script-url",
+  FORM_ENDPOINT: window.KINARA_ENDPOINT || "https://XXXX-set-in-config.js",
   WHATSAPP: "919876543210"
 };
 (function(){
@@ -687,6 +688,7 @@ textarea.ta:focus{outline:2px solid #5f9e98;outline-offset:1px}
           <span class="err" id="e-consent"></span>
           <!-- hidden attribution fields -->
           <div id="hidden"></div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label for="f-website">Leave this empty</label><input id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
           <button class="btn btn-cta" type="submit" id="submitBtn" data-cta="form">Book my appointment <span class="dot">→</span></button>
           <span class="err" id="e-form"></span>
           <p class="form-foot">Free to book. No spam calls. Pay only at the clinic.</p>
