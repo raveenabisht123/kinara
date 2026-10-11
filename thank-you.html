@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Booking Received</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&family=JetBrains+Mono:wght@400&display=swap">
+<script>
+window.KINARA_CFG = { META_PIXEL_ID:"XXXXXXXXXXXXXXX", GA4_ID:"G-XXXXXXXXXX", GADS_ID:"AW-XXXXXXXXX", GADS_LABEL:"XXXXXXXXXXXX", WHATSAPP:"919876543210" };
+(function(){
+  var c = window.KINARA_CFG;
+  var eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,8);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('js', new Date());
+  if (c.GA4_ID.indexOf('XXXX') === -1) {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + c.GA4_ID; document.head.appendChild(s);
+    gtag('config', c.GA4_ID);
+    gtag('event', 'generate_lead', { event_id: eventId });
+    if (c.GADS_ID.indexOf('XXXX') === -1) {
+      gtag('config', c.GADS_ID);
+      gtag('event', 'conversion', { send_to: c.GADS_ID + '/' + c.GADS_LABEL, transaction_id: eventId });
+    }
+  }
+  if (c.META_PIXEL_ID.indexOf('XXXX') === -1) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', c.META_PIXEL_ID); fbq('track', 'PageView');
+    fbq('track', 'Lead', {}, { eventID: eventId });
+  }
+})();
+</script>
+<style>
+:root{--page:#eef2f1;--surface:#fff;--ink:#10201f;--soft:#4b5f5d;--line:#d5dfdd;--teal:#0b3433;--teal-7:#145552;--ph:#a3521f;--ph-bg:#fbefe6;
+  --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;--serif:"Newsreader",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,monospace;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--page:#0b1413;--surface:#121e1d;--ink:#e7efee;--soft:#9fb3b0;--line:#24403d;--teal-7:#7fc0b9;--ph:#f0a77a;--ph-bg:#33221a;color-scheme:dark}}
+:root[data-theme="dark"]{--page:#0b1413;--surface:#121e1d;--ink:#e7efee;--soft:#9fb3b0;--line:#24403d;--teal-7:#7fc0b9;--ph:#f0a77a;--ph-bg:#33221a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.55 var(--display);padding-inline:16px;padding-block:48px}
+main{max-width:620px;margin-inline:auto;display:grid;gap:24px}
+.card{background:var(--surface);border-radius:28px;padding:32px 24px;display:grid;gap:20px}
+.tick{width:52px;height:52px;border-radius:50%;background:var(--teal);color:#f1f7f6;display:grid;place-items:center;font-size:22px}
+h1{font-weight:500;font-size:clamp(34px,7vw,48px);line-height:1.05;letter-spacing:-.025em;margin:0;text-wrap:balance}
+h1 em{font-family:var(--serif);font-weight:400;color:var(--teal-7)}
+p{margin:0;color:var(--soft)}
+.ph{font-family:var(--mono);font-size:.82em;color:var(--ph);background:var(--ph-bg);padding:1px 6px;border-radius:5px}
+.summary{display:grid;gap:0;border-top:1px solid var(--line)}
+.summary div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.summary span:first-child{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);padding-top:3px}
+ol{margin:0;padding-left:20px;display:grid;gap:8px;color:var(--soft)}
+.btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:999px;background:var(--teal);color:#fff;text-decoration:none;font-weight:500}
+a.back{color:var(--soft);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <div class="tick" aria-hidden="true">✓</div>
+    <h1>Booking received. <em>See you soon.</em></h1>
+    <p>Our front desk will WhatsApp you a confirmed time within 30 minutes, 8 AM to 8:30 PM IST. Requests after hours are confirmed by 9:30 AM the next morning.</p>
+    <div class="summary" id="sum" hidden>
+      <div><span>Patient</span><strong id="s-name"></strong></div>
+      <div><span>Service</span><strong id="s-svc"></strong></div>
+      <div><span>Preferred</span><strong id="s-day"></strong></div>
+    </div>
+    <div>
+      <p style="color:var(--ink);font-weight:500;margin-bottom:8px">Bring with you</p>
+      <ol>
+        <li>Any recent prescriptions or lab reports</li>
+        <li>A photo ID, and your insurance card if you plan to claim</li>
+        <li>For a child: their vaccination card</li>
+      </ol>
+    </div>
+    <a class="btn" id="wa" href="#">Save us on WhatsApp</a>
+  </div>
+  <a class="back" href="index.html">Back to Kinara Health</a>
+</main>
+<script>
+(function(){
+  var d = null; try { d = JSON.parse(sessionStorage.getItem('kinara_lead')); } catch(e){}
+  if (d && d.name) {
+    document.getElementById('s-name').textContent = d.name;
+    document.getElementById('s-svc').textContent = d.service;
+    document.getElementById('s-day').textContent = d.day;
+    document.getElementById('sum').hidden = false;
+  }
+  var w = document.getElementById('wa');
+  w.href = 'https://wa.me/' + window.KINARA_CFG.WHATSAPP + '?text=' + encodeURIComponent('Hi Kinara Health, I just booked an appointment.');
+  w.target = '_blank'; w.rel = 'noopener';
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kinara Health Clinic</title>
+<meta name="description" content="General care, dental, dermatology, pediatrics and diagnostics in one clinic. Book an appointment in under a minute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<script>
+/* ===== Tracking: replace XXXX placeholders. Scripts only load once real IDs are in. ===== */
+window.KINARA_CFG = {
+  META_PIXEL_ID: "XXXXXXXXXXXXXXX",
+  GA4_ID: "G-XXXXXXXXXX",
+  GADS_ID: "AW-XXXXXXXXX",
+  FORM_ENDPOINT: "https://XXXX-your-crm-or-apps-script-url",
+  WHATSAPP: "919876543210"
+};
+(function(){
+  var c = window.KINARA_CFG;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  gtag('consent','default',{ad_storage:'granted',analytics_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});
+  gtag('js', new Date());
+  if (c.GA4_ID.indexOf('XXXX') === -1) {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + c.GA4_ID; document.head.appendChild(s);
+    gtag('config', c.GA4_ID);
+    if (c.GADS_ID.indexOf('XXXX') === -1) gtag('config', c.GADS_ID);
+  }
+  if (c.META_PIXEL_ID.indexOf('XXXX') === -1) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', c.META_PIXEL_ID); fbq('track', 'PageView');
+  }
+})();
+</script>
+
+<style>
+/* Layout: clinical index. A deep-teal hero card floats on a cool page; services read as a numbered ledger; one booking form closes the page. */
+:root{
+  --page:#eef2f1;
+  --surface:#ffffff;
+  --ink:#10201f;
+  --ink-soft:#4b5f5d;
+  --line:#d5dfdd;
+  --teal-900:#0b3433;
+  --teal-700:#145552;
+  --teal-400:#5f9e98;
+  --mist:#e3eeec;
+  --cta:#0b3433;
+  --cta-ink:#ffffff;
+  --hero-ink:#f1f7f6;
+  --placeholder:#a3521f;
+  --placeholder-bg:#fbefe6;
+  --font-display:"Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-serif:"Newsreader", Georgia, "Times New Roman", serif;
+  --font-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  --r-lg:28px; --r-md:16px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --page:#0b1413; --surface:#121e1d; --ink:#e7efee; --ink-soft:#9fb3b0; --line:#24403d;
+  --teal-900:#0d3a38; --teal-700:#1d6d68; --teal-400:#7fc0b9; --mist:#16302e;
+  --cta:#cfe9e5; --cta-ink:#0b2524; --placeholder:#f0a77a; --placeholder-bg:#33221a; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --page:#0b1413; --surface:#121e1d; --ink:#e7efee; --ink-soft:#9fb3b0; --line:#24403d;
+  --teal-900:#0d3a38; --teal-700:#1d6d68; --teal-400:#7fc0b9; --mist:#16302e;
+  --cta:#cfe9e5; --cta-ink:#0b2524; --placeholder:#f0a77a; --placeholder-bg:#33221a; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{background:var(--page);color:var(--ink);font-family:var(--font-display);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 96px}
+@media (min-width:768px){ body{padding-inline:24px;padding-bottom:0} }
+.wrap{max-width:1180px;margin-inline:auto}
+h1,h2,h3{font-weight:500;letter-spacing:-0.025em;line-height:1.05;margin:0;text-wrap:balance}
+em.s{font-family:var(--font-serif);font-style:italic;font-weight:400;letter-spacing:-0.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--teal-400);outline-offset:3px;border-radius:6px}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal-400)}
+.ph{font-family:var(--font-mono);font-size:.78em;color:var(--placeholder);background:var(--placeholder-bg);padding:1px 6px;border-radius:5px;letter-spacing:0}
+
+/* Buttons: one CTA style, repeated */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 22px;border-radius:999px;font:500 15px/1 var(--font-display);text-decoration:none;cursor:pointer;border:0;transition:transform .2s ease, background .2s}
+.btn-cta{background:var(--cta);color:var(--cta-ink)}
+.btn-cta:hover{transform:translateY(-1px)}
+.btn-cta .dot{width:22px;height:22px;border-radius:50%;background:var(--cta-ink);color:var(--cta);display:grid;place-items:center;font-size:12px}
+.btn-ghost{background:transparent;color:inherit;border:1px solid currentColor;opacity:.85}
+.hero .btn-cta{background:#f1f7f6;color:#0b3433}
+.hero .btn-cta .dot{background:#0b3433;color:#f1f7f6}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;text-decoration:none}
+.brand svg{width:28px;height:28px}
+.top nav{display:none;gap:28px;font-size:14px;color:var(--ink-soft)}
+.top nav a{text-decoration:none}
+.top nav a:hover{color:var(--ink)}
+.top .btn{min-height:42px;font-size:14px;padding:0 18px}
+@media (min-width:900px){ .top nav{display:flex} }
+
+/* Hero */
+.hero{position:relative;border-radius:var(--r-lg);overflow:hidden;color:#f1f7f6;
+  background:radial-gradient(120% 80% at 85% 10%, #2a7b74 0%, transparent 60%),
+             linear-gradient(180deg,#0b3433 0%,#145552 55%,#6fa9a2 100%);
+  padding:28px 22px 0;display:grid;gap:28px}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(180deg,#000,transparent 70%)}
+.hero-copy{position:relative;z-index:1;display:grid;gap:20px;align-content:start;padding-bottom:8px}
+.pill{justify-self:start;font-size:12px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);display:inline-flex;gap:8px;align-items:center}
+.pill i{width:7px;height:7px;border-radius:50%;background:#9de0d6;box-shadow:0 0 0 4px rgba(157,224,214,.25)}
+.hero h1{font-size:clamp(42px,8.2vw,84px)}
+.hero h1 em.s{display:block;color:#cdeae5}
+.hero-sub{max-width:44ch;color:rgba(241,247,246,.82);font-size:17px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px}
+.hero-ctas .btn-ghost{color:#f1f7f6;border-color:rgba(255,255,255,.35)}
+.friction{font-size:13px;color:rgba(241,247,246,.7)}
+.trust{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:rgba(241,247,246,.85);list-style:none;padding:0;margin:0}
+.trust li::before{content:"✓ ";color:#9de0d6}
+.hero .ph{background:rgba(0,0,0,.25);color:#ffd2b5}
+
+.hero-visual{position:relative;z-index:1;min-height:380px;display:grid}
+.portrait{align-self:end;justify-self:center;width:min(100%,420px);aspect-ratio:4/5;max-width:100%;border-radius:200px 200px 0 0;
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.04));border:1px dashed rgba(255,255,255,.35);border-bottom:0;
+  display:grid;place-items:center;text-align:center;padding:24px;font-family:var(--font-mono);font-size:12px;color:rgba(241,247,246,.75)}
+.glass{position:absolute;background:rgba(10,45,44,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-md);padding:14px 16px;font-size:13px;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+.glass .eyebrow{color:rgba(241,247,246,.65);font-size:10px}
+.glass .eyebrow::before{background:#9de0d6}
+.g-team{top:10px;left:0;width:230px;display:grid;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+.g-hours{right:0;bottom:40px;background:rgba(255,255,255,.92);color:#0b3433;width:210px}
+.g-hours .eyebrow{color:#4b5f5d}
+.g-hours strong{display:block;font-weight:500;margin-top:6px}
+.g-hours .ph{background:#fbefe6;color:#a3521f}
+@media (min-width:900px){
+  .hero{grid-template-columns:1.1fr .9fr;padding:56px 56px 0;gap:24px}
+  .hero-copy{padding-bottom:56px;align-content:center}
+  .hero-visual{min-height:560px}
+}
+
+/* Service ledger strip (like the reference tab row) */
+.strip{display:grid;grid-template-columns:repeat(2,1fr);border-bottom:1px solid var(--line);margin-top:8px}
+.strip a{padding:16px 4px;font-size:14px;text-decoration:none;border-top:1px solid var(--line);display:flex;gap:10px;align-items:baseline}
+.strip a span{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft)}
+.strip a:hover{color:var(--teal-700)}
+@media (min-width:768px){ .strip{grid-template-columns:repeat(5,1fr)} .strip a{border-top:0;border-right:1px solid var(--line);padding-inline:16px} .strip a:last-child{border-right:0} }
+
+section{padding-block:72px}
+@media (min-width:900px){ section{padding-block:104px} }
+.sec-head{display:grid;gap:16px;max-width:640px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(32px,5vw,54px)}
+.sec-head h2 em.s{color:var(--teal-700)}
+.lead{color:var(--ink-soft);font-size:17px;max-width:58ch}
+
+/* Problem */
+.problem{display:grid;gap:40px}
+.quotes{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.quotes li{font-family:var(--font-serif);font-style:italic;font-size:clamp(22px,2.6vw,30px);line-height:1.3;padding:20px 0;border-top:1px solid var(--line);color:var(--ink)}
+.quotes li:last-child{border-bottom:1px solid var(--line)}
+@media (min-width:900px){ .problem{grid-template-columns:.8fr 1.2fr;align-items:start} }
+
+/* Services ledger */
+.svc{display:grid;gap:32px}
+.ledger{list-style:none;padding:0;margin:0;background:var(--surface);border-radius:var(--r-lg);padding:8px 24px}
+.ledger li{border-bottom:1px solid var(--line)}
+.ledger li:last-child{border-bottom:0}
+.ledger button{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:32px 1fr 36px;gap:12px;align-items:center;padding:22px 0}
+.ledger .n{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft)}
+.ledger .t{font-size:clamp(22px,2.4vw,28px);letter-spacing:-.02em;line-height:1.15}
+.ledger .d{display:block;font-size:13px;color:var(--ink-soft);margin-top:4px;letter-spacing:0}
+.ledger .arr{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:all .25s}
+.ledger li.on .t{color:var(--teal-700)}
+.ledger li.on .arr{background:var(--teal-700);border-color:var(--teal-700);color:#fff;transform:rotate(-45deg)}
+.detail{background:var(--teal-900);color:#e9f4f2;border-radius:var(--r-lg);padding:32px;display:grid;gap:18px;align-content:start}
+.detail h3{font-size:32px}
+.detail h3 em.s{color:#bfe3dd}
+.detail ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.detail li{padding-left:22px;position:relative;color:rgba(233,244,242,.86)}
+.detail li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:#9de0d6}
+.detail .meta{display:flex;flex-wrap:wrap;gap:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.15);font-family:var(--font-mono);font-size:12px;color:rgba(233,244,242,.75)}
+.detail .ph{background:rgba(0,0,0,.25);color:#ffd2b5}
+.detail .btn-cta{background:#f1f7f6;color:#0b3433;justify-self:start}
+.detail .btn-cta .dot{background:#0b3433;color:#f1f7f6}
+@media (min-width:900px){ .svc{grid-template-columns:1.15fr .85fr} .detail{position:sticky;top:24px} }
+
+/* Approach: how a visit runs (real sequence, so numbered) */
+.approach{display:grid;gap:40px}
+.photo-ph{border-radius:var(--r-lg);aspect-ratio:4/5;max-width:100%;background:var(--mist);display:grid;place-items:center;text-align:center;padding:24px;border:1px dashed var(--line)}
+.steps{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:20px 0;border-top:1px solid var(--line)}
+.steps li::before{counter-increment:s;content:"0" counter(s);font-family:var(--font-mono);font-size:12px;color:var(--teal-700);padding-top:4px}
+.steps h3{font-size:20px;letter-spacing:-.01em}
+.steps p{color:var(--ink-soft);font-size:15px;margin-top:4px}
+@media (min-width:900px){ .approach{grid-template-columns:.8fr 1.2fr;gap:72px;align-items:center} }
+
+/* For / not for */
+.fit{display:grid;gap:16px}
+.fit .card{background:var(--surface);border-radius:var(--r-lg);padding:28px;display:grid;gap:14px;align-content:start}
+.fit .card.not{background:transparent;border:1px solid var(--line)}
+.fit h3{font-size:22px}
+.fit ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;color:var(--ink-soft)}
+.fit li{display:grid;grid-template-columns:20px 1fr;gap:8px}
+.fit .card li::before{content:"✓";color:var(--teal-700)}
+.fit .card.not li::before{content:"×";color:var(--ink-soft)}
+@media (min-width:768px){ .fit{grid-template-columns:1fr 1fr} }
+
+/* Testimonials */
+.tgrid{display:grid;gap:16px}
+.tcard{background:var(--surface);border-radius:var(--r-lg);padding:28px;display:grid;gap:20px;align-content:space-between}
+.tcard blockquote{margin:0;font-family:var(--font-serif);font-style:italic;font-size:21px;line-height:1.35}
+.tcard footer{display:flex;gap:12px;align-items:center;font-size:14px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--mist);flex:none}
+.tcard small{display:block;color:var(--ink-soft);font-size:12px}
+@media (min-width:900px){ .tgrid{grid-template-columns:repeat(3,1fr)} }
+
+/* Proof numbers */
+.nums{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);margin-top:48px}
+.nums div{padding:24px 4px;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.nums b{font-weight:500;font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.nums span{font-size:13px;color:var(--ink-soft)}
+@media (min-width:900px){ .nums{grid-template-columns:repeat(4,1fr)} .nums div{border-bottom:0;border-right:1px solid var(--line);padding-inline:20px} .nums div:last-child{border-right:0} }
+
+/* Fees */
+.fees{background:var(--surface);border-radius:var(--r-lg);overflow-x:auto}
+.fees table{width:100%;border-collapse:collapse;min-width:520px;font-variant-numeric:tabular-nums}
+.fees th,.fees td{text-align:left;padding:18px 24px;border-bottom:1px solid var(--line);font-size:15px}
+.fees th{font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.fees tr:last-child td{border-bottom:0}
+.fees td:last-child{text-align:right}
+.note{font-size:13px;color:var(--ink-soft);margin-top:14px}
+
+/* FAQ */
+.faq{display:grid;gap:40px}
+.faq details{border-top:1px solid var(--line);padding:20px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-size:18px;font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--font-mono);color:var(--teal-700);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--ink-soft);margin-top:10px;max-width:62ch}
+@media (min-width:900px){ .faq{grid-template-columns:.8fr 1.2fr} }
+
+/* Booking */
+.book{background:var(--teal-900);color:#eef7f5;border-radius:var(--r-lg);padding:32px 22px;display:grid;gap:36px}
+.book h2{font-size:clamp(34px,5vw,56px)}
+.book h2 em.s{color:#bfe3dd}
+.book .lead{color:rgba(238,247,245,.78)}
+.book .ph{background:rgba(0,0,0,.25);color:#ffd2b5}
+.contact{display:grid;gap:12px;font-size:15px;margin-top:24px}
+.contact div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.contact .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(238,247,245,.6);width:92px}
+form{background:#f7fbfa;color:#10201f;border-radius:22px;padding:24px;display:grid;gap:16px;align-content:start}
+.field{display:grid;gap:6px}
+.field label{font-size:13px;font-weight:500}
+.field input,.field select{font:inherit;font-size:16px;min-height:50px;border-radius:12px;border:1px solid #c9d6d4;background:#fff;color:#10201f;padding:0 14px;width:100%;color-scheme:light}
+.field input:focus,.field select:focus{outline:2px solid #5f9e98;outline-offset:1px;border-color:#5f9e98}
+.phone-row{display:grid;grid-template-columns:64px 1fr;gap:8px}
+.phone-row span{display:grid;place-items:center;border:1px solid #c9d6d4;border-radius:12px;background:#eef3f2;font-size:15px}
+.err{color:#b3261e;font-size:13px;min-height:0}
+.err:empty{display:none}
+.two{display:grid;gap:16px}
+@media (min-width:560px){ .two{grid-template-columns:1fr 1fr} }
+form .btn-cta{width:100%;min-height:54px;background:#0b3433;color:#fff}
+form .btn-cta .dot{background:#fff;color:#0b3433}
+form .btn-cta[disabled]{opacity:.6;cursor:wait}
+.form-foot{font-size:12.5px;color:#4b5f5d;text-align:center}
+.consent{display:flex;gap:10px;font-size:12.5px;color:#4b5f5d;align-items:flex-start}
+.consent input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:#0b3433}
+@media (min-width:900px){ .book{grid-template-columns:1fr 1fr;padding:56px;gap:56px} }
+
+/* Quick visitor bar under the hero */
+.quick{margin-top:20px;background:var(--surface);border-radius:22px;padding:18px;display:grid;gap:12px;border:1px solid var(--line)}
+.quick-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;align-items:baseline}
+.quick-head strong{font-weight:500;font-size:17px}
+.quick-head span{font-size:13px;color:var(--ink-soft)}
+.quick-row{display:grid;gap:10px}
+.quick input,.quick select{font:inherit;font-size:16px;min-height:50px;border-radius:12px;border:1px solid var(--line);background:var(--page);color:var(--ink);padding:0 14px;width:100%}
+.quick label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.quick .q-ph{display:grid;grid-template-columns:56px 1fr;gap:6px}
+.quick .q-ph span{display:grid;place-items:center;border:1px solid var(--line);border-radius:12px;font-size:15px;color:var(--ink-soft)}
+.quick .err{color:#c2412d}
+@media (min-width:900px){ .quick-row{grid-template-columns:1.2fr 1.2fr 1fr auto} .quick{padding:20px 22px} }
+textarea.ta{font:inherit;font-size:16px;border-radius:12px;border:1px solid #c9d6d4;background:#fff;color:#10201f;padding:12px 14px;width:100%;min-height:84px;resize:vertical;color-scheme:light}
+textarea.ta:focus{outline:2px solid #5f9e98;outline-offset:1px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg label{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:1px solid #c9d6d4;border-radius:999px;font-size:14px;font-weight:400;cursor:pointer;background:#fff}
+.seg input{accent-color:#0b3433}
+.seg label:has(input:checked){border-color:#0b3433;background:#e3eeec}
+.opt{font-weight:400;color:#4b5f5d}
+
+/* Owner-only inbox of visitor submissions */
+.inbox{margin-top:24px;background:var(--surface);border-radius:var(--r-lg);padding:24px;display:grid;gap:16px}
+.inbox-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline}
+.inbox h3{font-size:22px}
+.inbox .wrapx{overflow-x:auto}
+.inbox table{width:100%;border-collapse:collapse;min-width:720px;font-size:14px;font-variant-numeric:tabular-nums}
+.inbox th,.inbox td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.inbox th{font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.inbox .empty{color:var(--ink-soft);font-size:14px}
+.tag{font-family:var(--font-mono);font-size:11px;padding:2px 8px;border-radius:999px;background:var(--mist);color:var(--teal-700)}
+
+/* Illustrations */
+.portrait{border:0;padding:0;background:none;place-items:end center;overflow:hidden}
+.portrait svg{width:100%;height:auto;display:block}
+.photo-ph{padding:0;border:0;overflow:hidden;background:var(--mist)}
+.photo-ph svg{width:100%;height:100%;display:block}
+.avatar{overflow:hidden;width:44px;height:44px}
+.avatar svg{width:100%;height:100%;display:block}
+
+/* Doctors */
+.docs{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+.doc{background:var(--surface);border-radius:var(--r-lg);overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.doc .pic{aspect-ratio:1/1;max-width:100%;background:var(--mist);display:grid;place-items:end center}
+.doc .pic svg{width:86%;height:auto;display:block}
+.doc .info{padding:18px 20px 22px;display:grid;gap:4px;align-content:start}
+.doc h3{font-size:19px;letter-spacing:-.01em}
+.doc .role{color:var(--teal-700);font-size:14px}
+.doc .q{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft)}
+.doc .days{font-size:13px;color:var(--ink-soft);margin-top:6px}
+
+/* Health check packages */
+.pkgs{display:grid;gap:16px}
+.pkg{background:var(--surface);border-radius:var(--r-lg);padding:26px;display:grid;gap:14px;align-content:start;border:1px solid transparent}
+.pkg.feat{border-color:var(--teal-700)}
+.pkg h3{font-size:22px}
+.pkg .who{font-size:14px;color:var(--ink-soft)}
+.pkg .price{font-size:34px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.pkg .price small{font-size:13px;color:var(--ink-soft);letter-spacing:0}
+.pkg ul{margin:0;padding:0;list-style:none;display:grid;gap:7px;font-size:14px;color:var(--ink-soft)}
+.pkg li{display:grid;grid-template-columns:18px 1fr;gap:6px}
+.pkg li::before{content:"✓";color:var(--teal-700)}
+.pkg .btn{justify-self:start;min-height:46px;font-size:14px}
+@media (min-width:768px){ .pkgs{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1100px){ .pkgs{grid-template-columns:repeat(4,1fr)} }
+
+/* Know your numbers */
+.ref{display:grid;gap:24px}
+.ref-table{background:var(--surface);border-radius:var(--r-lg);overflow-x:auto}
+.ref-table table{width:100%;border-collapse:collapse;min-width:560px;font-variant-numeric:tabular-nums}
+.ref-table th,.ref-table td{text-align:left;padding:14px 20px;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:top}
+.ref-table th{font-family:var(--font-mono);font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.ref-table tr:last-child td{border-bottom:0}
+.ref-table td:nth-child(2){font-family:var(--font-mono);font-size:13px;color:var(--teal-700);white-space:nowrap}
+.warn{background:var(--surface);border-radius:var(--r-lg);padding:26px;display:grid;gap:12px;align-content:start}
+.warn h3{font-size:20px}
+.warn ul{margin:0;padding-left:18px;display:grid;gap:8px;color:var(--ink-soft);font-size:14.5px}
+.warn .sev{display:inline-block;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#fde7e4;color:#a1281b}
+@media (min-width:900px){ .ref{grid-template-columns:1.4fr 1fr;align-items:start} }
+
+/* Find us */
+.find{display:grid;gap:16px}
+.find .card{background:var(--surface);border-radius:var(--r-lg);overflow:hidden}
+.find .art svg{width:100%;height:auto;display:block}
+.find .meta{padding:22px 24px;display:grid;gap:10px;font-size:14.5px}
+.find .meta b{font-weight:500}
+.find .links{display:flex;flex-wrap:wrap;gap:8px}
+.find .links a{font-size:13.5px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+.find .links a:hover{border-color:var(--teal-700);color:var(--teal-700)}
+.copy{font:inherit;font-size:13.5px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:inherit;cursor:pointer}
+@media (min-width:900px){ .find{grid-template-columns:1fr 1fr} }
+
+/* Footer */
+.foot{padding-block:48px 32px;display:grid;gap:28px;font-size:14px;color:var(--ink-soft)}
+.foot .cols{display:grid;gap:24px}
+.foot b{color:var(--ink);font-weight:500;display:block;margin-bottom:6px}
+.foot .legal{display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px solid var(--line);padding-top:20px;font-size:13px}
+@media (min-width:768px){ .foot .cols{grid-template-columns:1.4fr 1fr 1fr 1fr} }
+
+/* Sticky mobile CTA */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--surface);border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;transition:transform .25s}
+.sticky.hide{transform:translateY(110%)}
+.sticky .btn{flex:1}
+.sticky .wa{flex:none;width:50px;height:50px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;color:var(--teal-700)}
+@media (min-width:768px){ .sticky{display:none} }
+
+/* Load-in: visible at rest, gentle lift */
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+.hero-copy > *{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy > *:nth-child(2){animation-delay:.06s}.hero-copy > *:nth-child(3){animation-delay:.12s}.hero-copy > *:nth-child(4){animation-delay:.18s}
+</style>
+</head>
+<body>
+<!-- DEMO BANNER: delete this line once the real clinic details are in -->
+<div style="background:#fbefe6;color:#7a3a14;font:13px/1.4 system-ui,sans-serif;text-align:center;padding:8px 16px;margin-inline:-16px">Demo website. Clinic name, doctors, address, phone and prices are samples.</div>
+
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="Kinara Health home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--teal-700)"/><path d="M16 8v16M8 16h16" stroke="#f1f7f6" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="4.5" fill="var(--teal-700)" stroke="#f1f7f6" stroke-width="2"/></svg>
+      Kinara Health
+    </a>
+    <nav aria-label="Sections">
+      <a href="#services">Services</a><a href="#doctors">Doctors</a><a href="#checkups">Health checks</a><a href="#health">Health info</a><a href="#find">Location</a>
+    </nav>
+    <a class="btn btn-cta" href="#book" data-cta="header">Book a visit</a>
+  </header>
+
+  <main id="top">
+    <!-- 1. HERO -->
+    <div class="hero">
+      <div class="hero-copy">
+        <span class="pill"><i></i>Family clinic in Indiranagar, Bengaluru</span>
+        <h1 id="h1">Doctors who remember <em class="s">your story.</em></h1>
+        <p class="hero-sub" id="hsub">General care, dental, skin, children's health and diagnostics under one roof. One file follows you across every department, so you never repeat your history twice.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-cta" href="#book" data-cta="hero">Book an appointment <span class="dot">→</span></a>
+          <a class="btn btn-ghost" href="#services">See the five services</a>
+        </div>
+        <p class="friction">Takes 40 seconds. We confirm your slot on WhatsApp.</p>
+        <ul class="trust">
+          <li>Same-day slots in all five departments</li>
+          <li>Lab reports on WhatsApp</li>
+          <li>Open 8 AM to 9 PM, Mon to Sat</li>
+        </ul>
+      </div>
+      <div class="hero-visual">
+        <div class="portrait" data-person='{"skin":"#b97a56","hair":"#231d1b","style":"long","glasses":1,"coat":"#f6faf9","shirt":"#1d6d68","steth":1}' role="img" aria-label="Illustration of Dr. Meera Iyer, lead physician"></div>
+        <div class="glass g-team">
+          <span class="eyebrow">One team around you · 05</span>
+          <span>Five areas of care, one shared record.</span>
+          <div class="chips"><span>General</span><span>Dental</span><span>Skin</span><span>Pediatrics</span><span>Diagnostics</span></div>
+        </div>
+        <div class="glass g-hours">
+          <span class="eyebrow">Dr. Meera Iyer</span>
+          <strong>Lead physician, MD Internal Medicine</strong>
+          <a href="#doctors" style="font-size:13px;color:#145552">Meet the team →</a>
+        </div>
+      </div>
+    </div>
+
+    <nav class="strip" aria-label="Services">
+      <a href="#services" data-svc="0"><span>01</span>General Care</a>
+      <a href="#services" data-svc="1"><span>02</span>Dental</a>
+      <a href="#services" data-svc="2"><span>03</span>Dermatology</a>
+      <a href="#services" data-svc="3"><span>04</span>Pediatrics</a>
+      <a href="#services" data-svc="4"><span>05</span>Diagnostics</a>
+    </nav>
+
+    <form class="quick" id="quickForm" novalidate aria-labelledby="q-title">
+      <div class="quick-head"><strong id="q-title">Request a visit</strong><span>Three details now, the rest on the next step.</span></div>
+      <div class="quick-row">
+        <div><label for="q-name">Patient's name</label><input id="q-name" autocomplete="name" placeholder="Patient's name"></div>
+        <div class="q-ph"><span>+91</span><label for="q-phone">Mobile number</label><input id="q-phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="Mobile number"></div>
+        <div><label for="q-svc">Service</label>
+          <select id="q-svc"><option value="">Service needed</option><option>General Care</option><option>Dental</option><option>Dermatology</option><option>Pediatrics</option><option>Diagnostics</option></select></div>
+        <button class="btn btn-cta" type="submit" data-cta="quick-bar">Continue <span class="dot">→</span></button>
+      </div>
+      <span class="err" id="e-quick"></span>
+    </form>
+
+    <!-- 2. PROBLEM -->
+    <section class="problem" aria-labelledby="p-h">
+      <div class="sec-head">
+        <span class="eyebrow">Why families switch</span>
+        <h2 id="p-h">Healthcare shouldn't feel like <em class="s">starting over.</em></h2>
+        <p class="lead">These are the things patients tell us on their first visit.</p>
+      </div>
+      <ul class="quotes">
+        <li>"Every new doctor asks for my old reports, and I never have them with me."</li>
+        <li>"My son needs a pediatrician, I need a dentist, and they're on opposite ends of the city."</li>
+        <li>"I waited 50 minutes past my appointment time with a fever."</li>
+        <li>"The lab sent the report, but nobody explained what it meant."</li>
+      </ul>
+    </section>
+
+    <!-- 3. SERVICES -->
+    <section id="services" aria-labelledby="s-h">
+      <div class="sec-head">
+        <span class="eyebrow">Services</span>
+        <h2 id="s-h">Five areas of care, built to <em class="s">talk to each other.</em></h2>
+        <p class="lead">Pick a service to see what a visit covers. Your doctors share one record, so a skin issue flagged in pediatrics reaches the dermatologist without a new form.</p>
+      </div>
+      <div class="svc">
+        <ul class="ledger" id="ledger"></ul>
+        <aside class="detail" id="detail" aria-live="polite"></aside>
+      </div>
+    </section>
+
+    <!-- 4. APPROACH -->
+    <section id="approach" class="approach" aria-labelledby="a-h">
+      <div class="photo-ph" id="sceneConsult" role="img" aria-label="Illustration of a doctor talking with a patient across a desk"></div>
+      <div>
+        <div class="sec-head" style="margin-bottom:0">
+          <span class="eyebrow">How a visit works</span>
+          <h2 id="a-h">Care that starts with <em class="s">listening.</em></h2>
+          <p class="lead">A first consultation is booked long enough to hear the whole story. Then we keep it on file.</p>
+        </div>
+        <ol class="steps">
+          <li><div><h3>Book in under a minute</h3><p>Choose a service and a preferred day. We confirm a slot on WhatsApp.</p></div></li>
+          <li><div><h3>Unhurried first consult</h3><p>Your doctor takes a full history once. It goes into one record shared by all five departments.</p></div></li>
+          <li><div><h3>Tests in the same building</h3><p>If you need bloodwork or a scan, the diagnostics team is downstairs. Reports reach your phone.</p></div></li>
+          <li><div><h3>A follow-up that's planned</h3><p>You leave with a written plan and a follow-up date, not a vague "come back if it continues".</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- DOCTORS -->
+    <section id="doctors" aria-labelledby="d-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Your care team</span><h2 id="d-h">Five doctors, <em class="s">one record.</em></h2><p class="lead">Each department is led by a specialist who can see your full history, with your consent, before you sit down.</p></div>
+      <div class="docs">
+        <article class="doc"><div class="pic" data-person='{"skin":"#b97a56","hair":"#231d1b","style":"long","glasses":1,"coat":"#f6faf9","shirt":"#1d6d68","steth":1}' role="img" aria-label="Illustration of Dr. Meera Iyer"></div><div class="info"><h3>Dr. Meera Iyer</h3><span class="role">General physician</span><span class="q">MBBS, MD (Internal Medicine)</span><span class="days">Mon to Sat, 8 AM to 2 PM</span></div></article>
+        <article class="doc"><div class="pic" data-person='{"skin":"#a86b47","hair":"#1a1514","style":"short","beard":1,"coat":"#f6faf9","shirt":"#3d5a80"}' role="img" aria-label="Illustration of Dr. Arjun Shetty"></div><div class="info"><h3>Dr. Arjun Shetty</h3><span class="role">Dental surgeon</span><span class="q">BDS, MDS (Conservative Dentistry)</span><span class="days">Mon to Sat, 10 AM to 7 PM</span></div></article>
+        <article class="doc"><div class="pic" data-person='{"skin":"#d4a07a","hair":"#3a2418","style":"bun","coat":"#f6faf9","shirt":"#8a4f5d"}' role="img" aria-label="Illustration of Dr. Nisha Kapoor"></div><div class="info"><h3>Dr. Nisha Kapoor</h3><span class="role">Dermatologist</span><span class="q">MBBS, MD (Dermatology)</span><span class="days">Tue, Thu, Sat, 4 PM to 9 PM</span></div></article>
+        <article class="doc"><div class="pic" data-person='{"skin":"#8f5a3c","hair":"#141010","style":"short","glasses":1,"coat":"#f6faf9","shirt":"#c79a3a","steth":1}' role="img" aria-label="Illustration of Dr. Rahul Menon"></div><div class="info"><h3>Dr. Rahul Menon</h3><span class="role">Pediatrician</span><span class="q">MBBS, MD (Pediatrics)</span><span class="days">Mon to Sat, 9 AM to 1 PM, 5 PM to 8 PM</span></div></article>
+        <article class="doc"><div class="pic" data-person='{"skin":"#c48b66","hair":"#2b1d16","style":"long","coat":"#f6faf9","shirt":"#145552"}' role="img" aria-label="Illustration of Dr. Farah Siddiqui"></div><div class="info"><h3>Dr. Farah Siddiqui</h3><span class="role">Pathologist, diagnostics lead</span><span class="q">MBBS, MD (Pathology)</span><span class="days">Mon to Sat, 8 AM to 4 PM</span></div></article>
+      </div>
+    </section>
+
+    <!-- 5. FOR / NOT FOR -->
+    <section aria-labelledby="f-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Is Kinara right for you</span><h2 id="f-h">Built for families who want <em class="s">one clinic.</em></h2></div>
+      <div class="fit">
+        <div class="card"><h3>A good fit if you</h3><ul>
+          <li>Want one place for the whole family, from a toddler's vaccines to a parent's BP checks</li>
+          <li>Would rather not carry a folder of old reports to every appointment</li>
+          <li>Prefer booked time slots over walk-in queues</li>
+          <li>Want lab results explained by the doctor who ordered them</li>
+        </ul></div>
+        <div class="card not"><h3>Go elsewhere if you need</h3><ul>
+          <li>Emergency or trauma care. Call 112 or go to the nearest hospital emergency.</li>
+          <li>Inpatient admission or surgery under general anaesthesia</li>
+          <li>Specialities outside our five areas, such as cardiology or oncology. We'll refer you.</li>
+        </ul></div>
+      </div>
+    </section>
+
+    <!-- 6. PROOF -->
+    <section aria-labelledby="t-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Patients</span><h2 id="t-h">What it feels like to be a <em class="s">Kinara patient.</em></h2></div>
+      <div class="tgrid">
+        <figure class="tcard" style="margin:0"><span class="tag" style="justify-self:start">Sample review, replace with a real one</span><blockquote>"I booked at 9 in the morning and was seeing Dr. Menon by 11. He already had my daughter's vaccine history from her last visit."</blockquote><footer><div class="avatar" data-person-mini></div><div>Priya S., Koramangala<small>Visited for Pediatrics</small></div></footer></figure>
+        <figure class="tcard" style="margin:0"><span class="tag" style="justify-self:start">Sample review, replace with a real one</span><blockquote>"The lab report came on WhatsApp the same evening, and Dr. Iyer called to explain the thyroid numbers. No second visit needed."</blockquote><footer><div class="avatar" data-person-mini></div><div>Ramesh K., HAL 2nd Stage<small>Visited for Diagnostics</small></div></footer></figure>
+        <figure class="tcard" style="margin:0"><span class="tag" style="justify-self:start">Sample review, replace with a real one</span><blockquote>"My father's BP, my tooth filling and my son's check-up, all in one Saturday morning. Clear fees, no surprises."</blockquote><footer><div class="avatar" data-person-mini></div><div>Ananya R., Domlur<small>Visited for Dental</small></div></footer></figure>
+      </div>
+      <div class="nums">
+        <div><b>5</b><span>Departments under one roof</span></div>
+        <div><b>13 hrs</b><span>Open daily, 8 AM to 9 PM (Mon to Sat)</span></div>
+        <div><b>30 min</b><span>WhatsApp confirmation during desk hours</span></div>
+        <div><b>1</b><span>Shared record across every doctor</span></div>
+      </div>
+    </section>
+
+    <!-- 7. FEES -->
+    <section id="fees" aria-labelledby="fee-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Consultation fees</span><h2 id="fee-h">Clear fees, <em class="s">before you visit.</em></h2></div>
+      <div class="fees">
+        <table>
+          <thead><tr><th>Service</th><th>What's included</th><th>Fee</th></tr></thead>
+          <tbody>
+            <tr><td>General physician</td><td>Consultation, vitals, written plan</td><td>₹600</td></tr>
+            <tr><td>Dental check-up</td><td>Exam and cleaning advice</td><td>₹500</td></tr>
+            <tr><td>Dermatology</td><td>Skin, hair and nail consultation</td><td>₹900</td></tr>
+            <tr><td>Pediatrics</td><td>Consultation and growth check</td><td>₹700</td></tr>
+            <tr><td>Diagnostics</td><td>Lab tests and imaging, priced per test</td><td>From ₹199</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Fees are inclusive of all taxes. Cashless OPD with most major insurers and TPAs. Ask the front desk to check your policy.</p>
+    </section>
+
+    <!-- HEALTH CHECKS -->
+    <section id="checkups" aria-labelledby="hc-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Preventive health checks</span><h2 id="hc-h">Health check-ups, <em class="s">read by a doctor.</em></h2><p class="lead">Samples are collected in 15 minutes from 8 AM. Fast for 10 to 12 hours before. Reports reach WhatsApp the same evening, and a doctor walks you through them.</p></div>
+      <div class="pkgs">
+        <div class="pkg"><h3>Child Wellness</h3><span class="who">Ages 1 to 12</span><div class="price">₹999 <small>incl. taxes</small></div><ul><li>Pediatrician consultation</li><li>Complete blood count (CBC)</li><li>Haemoglobin and iron studies</li><li>Urine routine</li><li>Growth and vaccine-schedule review</li></ul><a class="btn btn-cta" href="#book" data-cta="pkg-child-wellness" data-pkg="Diagnostics">Book Child Wellness</a></div>
+        <div class="pkg"><h3>Essential</h3><span class="who">Adults under 40</span><div class="price">₹1,499 <small>incl. taxes</small></div><ul><li>Complete blood count (CBC)</li><li>Fasting blood sugar and HbA1c</li><li>Lipid profile</li><li>Urine routine</li><li>Doctor review of results</li></ul><a class="btn btn-cta" href="#book" data-cta="pkg-essential" data-pkg="Diagnostics">Book Essential</a></div>
+        <div class="pkg feat"><span class="tag" style="justify-self:start">Most booked</span><h3>Complete</h3><span class="who">Adults 40 to 59</span><div class="price">₹3,499 <small>incl. taxes</small></div><ul><li>Everything in Essential</li><li>Thyroid profile (T3, T4, TSH)</li><li>Liver and kidney function tests</li><li>Vitamin D and B12</li><li>ECG and doctor review</li></ul><a class="btn btn-cta" href="#book" data-cta="pkg-complete" data-pkg="Diagnostics">Book Complete</a></div>
+        <div class="pkg"><h3>Senior Care</h3><span class="who">Adults 60 and above</span><div class="price">₹4,999 <small>incl. taxes</small></div><ul><li>Everything in Complete</li><li>Chest X-ray</li><li>Ultrasound abdomen</li><li>PSA (men) or Pap smear (women)</li><li>Fall-risk and medication review</li></ul><a class="btn btn-cta" href="#book" data-cta="pkg-senior-care" data-pkg="Diagnostics">Book Senior Care</a></div>
+      </div>
+    </section>
+
+    <!-- KNOW YOUR NUMBERS -->
+    <section id="health" aria-labelledby="k-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Health information</span><h2 id="k-h">Know your <em class="s">numbers.</em></h2><p class="lead">Common reference ranges for healthy adults. Your doctor reads them against your age, history and medicines, so use these as a guide, not a diagnosis.</p></div>
+      <div class="ref">
+        <div class="ref-table"><table>
+          <thead><tr><th>Measure</th><th>Healthy range</th><th>What it tells you</th></tr></thead>
+          <tbody>
+            <tr><td>Blood pressure</td><td>Below 120/80 mmHg</td><td>130/80 or higher on repeat readings is high blood pressure</td></tr>
+            <tr><td>Fasting blood sugar</td><td>70 to 99 mg/dL</td><td>100 to 125 suggests prediabetes; 126 or higher, diabetes</td></tr>
+            <tr><td>HbA1c</td><td>Below 5.7%</td><td>Average sugar over 3 months; 6.5% or higher indicates diabetes</td></tr>
+            <tr><td>BMI (Asian adults)</td><td>18.5 to 22.9</td><td>23 to 24.9 is overweight for Indians; 25 or more, obese</td></tr>
+            <tr><td>Waist size</td><td>Men under 90 cm, women under 80 cm</td><td>Belly fat raises heart and diabetes risk even at a normal BMI</td></tr>
+            <tr><td>LDL cholesterol</td><td>Below 100 mg/dL</td><td>Lower targets apply if you have diabetes or heart disease</td></tr>
+            <tr><td>Haemoglobin</td><td>Men 13 to 17, women 12 to 15 g/dL</td><td>Low values suggest anaemia, common in Indian women and children</td></tr>
+            <tr><td>Vitamin D</td><td>30 to 100 ng/mL</td><td>Below 20 is deficient; very common even in sunny cities</td></tr>
+          </tbody>
+        </table></div>
+        <div class="warn">
+          <span class="sev">Go to emergency, call 112</span>
+          <h3>Don't book a slot for these</h3>
+          <ul>
+            <li>Chest pain or pressure, especially spreading to the arm or jaw</li>
+            <li>Sudden weakness of face, arm or leg, or slurred speech</li>
+            <li>Severe breathlessness, or lips turning blue</li>
+            <li>Fever of 100.4°F (38°C) or more in a baby under 3 months</li>
+            <li>A seizure, fainting, or heavy bleeding that won't stop</li>
+          </ul>
+          <h3 style="margin-top:8px">Book a visit within 24 hours for</h3>
+          <ul>
+            <li>Fever lasting more than 3 days</li>
+            <li>A cough beyond 2 weeks, or with blood</li>
+            <li>A child who is drinking less or passing less urine</li>
+            <li>A new rash with fever, or a mole that has changed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ -->
+    <section id="faq" class="faq" aria-labelledby="q-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Questions</span><h2 id="q-h">Before you <em class="s">book.</em></h2></div>
+      <div>
+        <details><summary>Can I get a same-day appointment?</summary><p>Usually, yes. Book the form below and we'll offer the earliest open slot on WhatsApp. For a fever or a child who is unwell, mention it in the form and we prioritise the slot.</p></details>
+        <details><summary>Do I pay anything to book?</summary><p>No. Booking is free. You pay the consultation fee at the clinic, by UPI, card or cash.</p></details>
+        <details><summary>Can I reschedule or cancel?</summary><p>Reply to the WhatsApp confirmation at any time. There's no cancellation charge.</p></details>
+        <details><summary>Do you accept health insurance?</summary><p>Cashless OPD is available with most major insurers and TPAs. If yours is not on the list, we give you an itemised bill for reimbursement.</p></details>
+        <details><summary>Can I book for my child or a parent?</summary><p>Yes. Enter their name in the form and your phone number. Each family member gets their own record, linked to yours.</p></details>
+        <details><summary>Is this for emergencies?</summary><p>No. For chest pain, breathing trouble, heavy bleeding or an accident, call 112 or go to the nearest hospital emergency department.</p></details>
+      </div>
+    </section>
+
+    <!-- FIND US -->
+    <section id="find" aria-labelledby="fu-h" style="padding-top:0">
+      <div class="sec-head"><span class="eyebrow">Visit the clinic</span><h2 id="fu-h">Find us in <em class="s">Indiranagar.</em></h2></div>
+      <div class="find">
+        <div class="card"><div class="art" id="sceneClinic" role="img" aria-label="Illustration of the Kinara Health clinic building"></div>
+          <div class="meta"><b>Kinara Health</b><span>2nd Floor, 14 Lakeview Arcade, 12th Main Road, Indiranagar, Bengaluru 560038</span><span style="color:var(--ink-soft)">Landmark: opposite the HAL 2nd Stage water tank</span>
+            <div class="links"><a href="https://www.google.com/maps/search/?api=1&query=12th+Main+Road+Indiranagar+Bengaluru+560038" target="_blank" rel="noopener">Open in Google Maps</a><button class="copy" type="button" data-copy="2nd Floor, 14 Lakeview Arcade, 12th Main Road, Indiranagar, Bengaluru 560038">Copy address</button></div></div></div>
+        <div class="card"><div class="art" id="sceneMap" role="img" aria-label="Map showing the clinic near Indiranagar metro station and 100 Feet Road"></div>
+          <div class="meta"><b>Getting here</b>
+            <span>Metro: 700 m from Indiranagar station (Purple Line), about 9 minutes on foot.</span>
+            <span>By road: off 100 Feet Road, turn at the 12th Main signal. Basement parking for 20 cars.</span>
+            <span>Call or WhatsApp: <b>+91 98765 43210</b> <button class="copy" type="button" data-copy="+91 98765 43210">Copy number</button></span>
+            <span>Email: <b>care@kinarahealth.in</b></span></div></div>
+      </div>
+    </section>
+
+    <!-- 9. BOOK -->
+    <section id="book" style="padding-top:0" aria-labelledby="b-h">
+      <div class="book">
+        <div>
+          <span class="eyebrow" style="color:rgba(238,247,245,.7)">Book a visit</span>
+          <h2 id="b-h" style="margin-top:16px">Book your slot. <em class="s">We'll handle the rest.</em></h2>
+          <p class="lead" style="margin-top:16px">Send the form and our front desk confirms a time on WhatsApp within 30 minutes, 8 AM to 8:30 PM IST.</p>
+          <div class="contact" id="visit">
+            <div><span class="k">Address</span><span>2nd Floor, 14 Lakeview Arcade, 12th Main Road, Indiranagar, Bengaluru 560038<br><small style="color:rgba(238,247,245,.65)">Landmark: opposite the HAL 2nd Stage water tank</small></span></div>
+            <div><span class="k">Phone</span><span>+91 98765 43210</span></div>
+            <div><span class="k">Email</span><span>care@kinarahealth.in</span></div>
+            <div><span class="k">Hours</span><span>Mon to Sat 8 AM to 9 PM · Sun 9 AM to 1 PM</span></div>
+            <div><span class="k">Parking</span><span>Basement parking, lift to 2nd floor, wheelchair access</span></div>
+            <div><span class="k">WhatsApp</span><a id="waLink" href="#" data-wa="1" style="color:#bfe3dd">Message the front desk</a></div>
+          </div>
+        </div>
+
+        <form id="leadForm" novalidate>
+          <div class="field"><label for="f-name">Patient's full name</label><input id="f-name" name="name" autocomplete="name" required placeholder="e.g. Ananya Rao"><span class="err" id="e-name"></span></div>
+          <div class="field"><label for="f-phone">Mobile number (for WhatsApp confirmation)</label>
+            <div class="phone-row"><span>+91</span><input id="f-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" required placeholder="98XXXXXXXX"></div>
+            <span class="err" id="e-phone"></span></div>
+          <div class="two">
+            <div class="field"><label for="f-svc">Service</label>
+              <select id="f-svc" name="service" required>
+                <option value="">Choose one</option><option>General Care</option><option>Dental</option><option>Dermatology</option><option>Pediatrics</option><option>Diagnostics</option>
+              </select><span class="err" id="e-svc"></span></div>
+            <div class="field"><label for="f-day">Preferred day</label>
+              <select id="f-day" name="preferred_day"><option>Today</option><option>Tomorrow</option><option>This week</option><option>Next week</option></select></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="f-age">Patient's age</label><input id="f-age" name="age" type="number" inputmode="numeric" min="0" max="120" placeholder="e.g. 34"><span class="err" id="e-age"></span></div>
+            <div class="field"><label for="f-email">Email <span class="opt">(optional)</span></label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"><span class="err" id="e-email"></span></div>
+          </div>
+          <fieldset class="field" style="border:0;padding:0;margin:0"><legend style="font-size:13px;font-weight:500;margin-bottom:6px">Visiting as</legend>
+            <div class="seg">
+              <label for="f-new"><input id="f-new" type="radio" name="visit_type" value="New patient" checked> New patient</label>
+              <label for="f-ret"><input id="f-ret" type="radio" name="visit_type" value="Returning patient"> Returning patient</label>
+            </div></fieldset>
+          <div class="field"><label for="f-reason">Reason for visit <span class="opt">(optional)</span></label><textarea class="ta" id="f-reason" name="reason" maxlength="400" placeholder="e.g. Fever since two days, child aged 4"></textarea></div>
+          <label class="consent" for="f-consent"><input id="f-consent" type="checkbox" name="consent" required> <span>I agree to be contacted on WhatsApp or phone about this appointment. See our <a href="#privacy">privacy policy</a>.</span></label>
+          <span class="err" id="e-consent"></span>
+          <!-- hidden attribution fields -->
+          <div id="hidden"></div>
+          <button class="btn btn-cta" type="submit" id="submitBtn" data-cta="form">Book my appointment <span class="dot">→</span></button>
+          <span class="err" id="e-form"></span>
+          <p class="form-foot">Free to book. No spam calls. Pay only at the clinic.</p>
+        </form>
+      </div>
+      <div class="inbox" id="inbox" hidden>
+        <div class="inbox-head"><h3>Visitor submissions</h3><span class="tag">Only you can see this</span></div>
+        <div class="wrapx"><table><thead><tr><th>Received (IST)</th><th>Patient</th><th>Phone</th><th>Service</th><th>Day</th><th>Age</th><th>Type</th><th>Reason</th><th>Source</th></tr></thead><tbody id="inboxBody"></tbody></table></div>
+        <p class="empty" id="inboxEmpty">No submissions yet. When someone fills in the visitor form on this page, their request appears here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" id="privacy">
+    <div class="cols">
+      <div><b>Kinara Health</b>Multi-speciality outpatient clinic for families in east Bengaluru.</div>
+      <div><b>Visit</b>2nd Floor, 14 Lakeview Arcade, 12th Main Road, Indiranagar, Bengaluru 560038</div>
+      <div><b>Contact</b>+91 98765 43210<br>care@kinarahealth.in</div>
+      <div><b>Emergency</b>Call 112. We are an outpatient clinic.</div>
+    </div>
+    <div class="legal">
+      <a href="#privacy">Privacy policy</a>
+      <a href="#privacy">Terms of use</a>
+      <span>© 2026 Kinara Health. Information on this page is not a substitute for a doctor's advice.</span>
+    </div>
+  </footer>
+</div>
+
+<div class="sticky" id="sticky">
+  <a class="btn btn-cta" href="#book" data-cta="sticky">Book an appointment <span class="dot">→</span></a>
+  <a class="wa" href="#" data-wa="1" aria-label="WhatsApp the front desk">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.6-.3Z"/></svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  var C = window.KINARA_CFG;
+
+  /* --- Original illustrations (drawn in SVG, no stock photos) --- */
+  function shade(hex, k){ var n=parseInt(hex.slice(1),16), r=n>>16, g=n>>8&255, b=n&255; function f(c){ return Math.max(0,Math.min(255,Math.round(c*k))); } return '#'+((1<<24)+(f(r)<<16)+(f(g)<<8)+f(b)).toString(16).slice(1); }
+  function person(o, bg){
+    var sk=o.skin, sk2=shade(sk,.86), hr=o.hair, coat=o.coat||'#f6faf9', sh=o.shirt||'#1d6d68', p='';
+    if (bg) p += '<path d="M10 240V110a90 90 0 0 1 180 0v130z" fill="'+bg+'"/>';
+    if (o.style==='long') p += '<path d="M60 104c-6 40 0 78 6 92h68c6-14 12-52 6-92z" fill="'+hr+'"/>';
+    p += '<path d="M14 240c2-48 30-72 86-76 56 4 84 28 86 76z" fill="'+coat+'"/>';
+    p += '<path d="M76 166l24 46 24-46z" fill="'+sh+'"/>';
+    p += '<path d="M76 166l24 46-14 4-22-46zM124 166l-24 46 14 4 22-46z" fill="'+shade(coat,.93)+'"/>';
+    p += '<rect x="87" y="128" width="26" height="42" rx="11" fill="'+sk2+'"/>';
+    p += '<ellipse cx="100" cy="104" rx="35" ry="41" fill="'+sk+'"/>';
+    p += '<ellipse cx="65" cy="108" rx="6" ry="9" fill="'+sk2+'"/><ellipse cx="135" cy="108" rx="6" ry="9" fill="'+sk2+'"/>';
+    if (o.style==='short') p += '<path d="M64 102c-4-36 16-54 38-54 24 0 40 18 35 54-4-16-14-28-36-30-22 2-33 14-37 30z" fill="'+hr+'"/>';
+    else p += '<path d="M64 106c-6-40 14-60 38-60 26 0 42 20 34 60-6-20-20-34-36-36-16 2-30 16-36 36z" fill="'+hr+'"/>';
+    if (o.style==='bun') p += '<circle cx="100" cy="46" r="15" fill="'+hr+'"/>';
+    if (o.beard) p += '<path d="M68 112c2 30 16 42 32 42s30-12 32-42c-6 14-16 20-32 20s-26-6-32-20z" fill="'+hr+'"/>';
+    p += '<circle cx="86" cy="106" r="3.2" fill="#1d1a19"/><circle cx="114" cy="106" r="3.2" fill="#1d1a19"/>';
+    p += '<path d="M80 96q6-4 12 0M108 96q6-4 12 0" stroke="'+hr+'" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
+    p += '<path d="M90 126q10 8 20 0" stroke="'+shade(sk,.6)+'" stroke-width="2.6" fill="none" stroke-linecap="round"/>';
+    if (o.glasses) p += '<g fill="none" stroke="#2a2a2a" stroke-width="2.2"><rect x="74" y="98" width="22" height="16" rx="6"/><rect x="104" y="98" width="22" height="16" rx="6"/><path d="M96 105h8"/></g>';
+    if (o.steth) p += '<path d="M80 168c-8 26 4 46 20 46s28-20 20-46" fill="none" stroke="#2f3b3a" stroke-width="3.4" stroke-linecap="round"/><circle cx="100" cy="216" r="7" fill="#9aa7a5" stroke="#2f3b3a" stroke-width="2.4"/>';
+    p += '<rect x="132" y="196" width="30" height="9" rx="2" fill="'+sh+'" opacity=".85"/>';
+    return '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'+p+'</svg>';
+  }
+  document.querySelectorAll('[data-person]').forEach(function(el){ try { el.innerHTML = person(JSON.parse(el.getAttribute('data-person'))); } catch(e){} });
+  var mini=[{skin:'#c48b66',hair:'#1f1715',style:'long',coat:'#e3eeec',shirt:'#c26d4a'},{skin:'#9c6644',hair:'#171212',style:'short',coat:'#e3eeec',shirt:'#3d5a80',glasses:1},{skin:'#d9a882',hair:'#2e1f18',style:'bun',coat:'#e3eeec',shirt:'#145552'}];
+  document.querySelectorAll('[data-person-mini]').forEach(function(el,i){ el.innerHTML = person(mini[i%3]).replace('viewBox="0 0 200 240"','viewBox="30 40 140 140"'); });
+
+  var consult = document.getElementById('sceneConsult');
+  if (consult) {
+    var d = person({skin:'#b97a56',hair:'#231d1b',style:'long',glasses:1,coat:'#f6faf9',shirt:'#1d6d68',steth:1});
+    var pt = person({skin:'#d9a882',hair:'#4a2e20',style:'bun',coat:'#e7b9a0',shirt:'#e7b9a0'});
+    consult.innerHTML = '<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
+      + '<rect width="400" height="500" fill="#dfeae8"/><rect x="0" y="0" width="400" height="330" fill="#e8f1ef"/>'
+      + '<rect x="40" y="50" width="130" height="170" rx="8" fill="#cfe0dd"/><path d="M40 135h130M105 50v170" stroke="#e8f1ef" stroke-width="6"/>'
+      + '<rect x="230" y="70" width="120" height="90" rx="6" fill="#fff"/><path d="M246 140l20-24 18 14 22-30 26 20" fill="none" stroke="#5f9e98" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'
+      + '<circle cx="372" cy="210" r="18" fill="#8fbf7a"/><rect x="364" y="226" width="16" height="40" fill="#b88a5c"/>'
+      + '<g transform="translate(10 150) scale(1.05)">'+d.replace(/<\/?svg[^>]*>/g,'')+'</g>'
+      + '<g transform="translate(400 190) scale(-1 1) scale(1.0)">'+pt.replace(/<\/?svg[^>]*>/g,'')+'</g>'
+      + '<rect x="0" y="390" width="400" height="110" fill="#b98f66"/><rect x="0" y="384" width="400" height="12" fill="#a57b52"/>'
+      + '<rect x="150" y="360" width="100" height="30" rx="4" fill="#fff"/><path d="M162 372h60M162 380h40" stroke="#c9d6d4" stroke-width="4"/>'
+      + '<rect x="268" y="356" width="22" height="30" rx="4" fill="#5f9e98"/></svg>';
+  }
+  var clinic = document.getElementById('sceneClinic');
+  if (clinic) {
+    var w=''; for (var r=0;r<3;r++) for (var c=0;c<5;c++) w += '<rect x="'+(70+c*56)+'" y="'+(70+r*58)+'" width="38" height="38" rx="3" fill="'+((r+c)%3? '#bfdcd7':'#f2e6b8')+'"/>';
+    clinic.innerHTML = '<svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+      + '<rect width="420" height="300" fill="#dcebe8"/><circle cx="360" cy="56" r="26" fill="#f6e3a6"/>'
+      + '<rect x="50" y="40" width="320" height="230" fill="#f4f8f7"/><rect x="50" y="40" width="320" height="16" fill="#145552"/>'+w
+      + '<rect x="160" y="240" width="100" height="30" fill="#0b3433"/><rect x="200" y="214" width="40" height="56" fill="#5f9e98"/>'
+      + '<rect x="120" y="200" width="180" height="24" rx="4" fill="#0b3433"/><text x="210" y="217" text-anchor="middle" font-family="Schibsted Grotesk, Arial, sans-serif" font-size="13" fill="#f1f7f6">KINARA HEALTH</text>'
+      + '<g transform="translate(132 205)"><circle r="0"/></g><path d="M132 206v12M126 212h12" stroke="#9de0d6" stroke-width="3"/>'
+      + '<circle cx="30" cy="236" r="26" fill="#7fb07a"/><rect x="26" y="250" width="8" height="20" fill="#8a6a48"/><circle cx="392" cy="232" r="22" fill="#8fbf7a"/><rect x="388" y="246" width="8" height="24" fill="#8a6a48"/>'
+      + '<rect x="0" y="270" width="420" height="30" fill="#9fb3b0"/><path d="M0 285h420" stroke="#f4f8f7" stroke-width="3" stroke-dasharray="18 14"/></svg>';
+  }
+  var map = document.getElementById('sceneMap');
+  if (map) {
+    map.innerHTML = '<svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
+      + '<rect width="420" height="300" fill="#e7efed"/>'
+      + '<g fill="#d6e3e0"><rect x="20" y="20" width="110" height="80" rx="6"/><rect x="150" y="20" width="90" height="80" rx="6"/><rect x="260" y="20" width="140" height="80" rx="6"/><rect x="20" y="130" width="110" height="60" rx="6"/><rect x="260" y="130" width="140" height="60" rx="6"/><rect x="20" y="220" width="220" height="60" rx="6"/><rect x="260" y="220" width="140" height="60" rx="6"/></g>'
+      + '<rect x="150" y="130" width="90" height="60" rx="6" fill="#b9d8c4"/><text x="195" y="164" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#3c6b56">PARK</text>'
+      + '<path d="M0 115h420" stroke="#fff" stroke-width="14"/><path d="M245 0v300" stroke="#fff" stroke-width="20"/><path d="M140 0v300" stroke="#fff" stroke-width="10"/><path d="M0 205h420" stroke="#fff" stroke-width="10"/>'
+      + '<text x="252" y="290" font-family="JetBrains Mono, monospace" font-size="9" fill="#4b5f5d" transform="rotate(-90 252 290)">100 FEET ROAD</text>'
+      + '<text x="20" y="111" font-family="JetBrains Mono, monospace" font-size="9" fill="#4b5f5d">12TH MAIN ROAD</text>'
+      + '<path d="M0 60h420" stroke="#8a6fb3" stroke-width="5" opacity=".7"/><circle cx="330" cy="60" r="9" fill="#fff" stroke="#8a6fb3" stroke-width="4"/><text x="330" y="44" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5b4785">INDIRANAGAR METRO</text>'
+      + '<path d="M330 69v46h-130" fill="none" stroke="#145552" stroke-width="3" stroke-dasharray="5 5"/>'
+      + '<g transform="translate(200 115)"><path d="M0 0c-14-18-22-28-22-40a22 22 0 0 1 44 0c0 12-8 22-22 40z" fill="#0b3433"/><circle cy="-40" r="8" fill="#9de0d6"/></g>'
+      + '<rect x="214" y="58" width="96" height="22" rx="11" fill="#0b3433"/><text x="262" y="73" text-anchor="middle" font-family="Schibsted Grotesk, Arial, sans-serif" font-size="11" fill="#f1f7f6">Kinara Health</text></svg>';
+  }
+
+  /* --- Copy buttons and package buttons --- */
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.getAttribute('data-copy'), old=b.textContent;
+      function ok(){ b.textContent='Copied'; setTimeout(function(){ b.textContent=old; },1600); }
+      try { navigator.clipboard.writeText(t).then(ok, function(){ b.textContent=t; }); } catch(e){ b.textContent=t; }
+    });
+  });
+  document.querySelectorAll('[data-pkg]').forEach(function(a){ a.addEventListener('click',function(){
+    document.getElementById('f-svc').value='Diagnostics';
+    var r=document.getElementById('f-reason'); r.value = a.textContent.replace('Book ','')+' health check package';
+  }); });
+
+  /* --- Services ledger --- */
+  var S = [
+    {t:"General Care", d:"Everyday healthcare for you and your family.", h:"Your first call for <em class='s'>anything.</em>", li:["Fever, infections, BP and sugar checks","Annual health check-ups","Vaccinations for adults","Referral to the right specialist when needed"], m:["~20 min consult","Same-day slots"]},
+    {t:"Dental", d:"Preventive and restorative dental care.", h:"Checks and fixes, <em class='s'>no drama.</em>", li:["Check-ups and scaling","Fillings and root canal treatment","Crowns, bridges and dentures","Children's dental care"], m:["Digital X-ray on site","Weekday and Saturday"]},
+    {t:"Dermatology", d:"Personalised care for skin, hair and nails.", h:"Skin care with <em class='s'>a diagnosis.</em>", li:["Acne, pigmentation and eczema","Hair fall and scalp conditions","Allergies and rashes","Mole and lesion checks"], m:["Doctor-led, not salon-led","Follow-up plan in writing"]},
+    {t:"Pediatrics", d:"Thoughtful care for growing children.", h:"Care that <em class='s'>grows with them.</em>", li:["Newborn and well-baby visits","Vaccination schedule tracking","Growth and nutrition reviews","Coughs, colds and fevers"], m:["Separate kids' waiting area","Vaccine reminders on WhatsApp"]},
+    {t:"Diagnostics", d:"Clear answers through modern diagnostic services.", h:"Results you <em class='s'>understand.</em>", li:["Blood tests and full-body panels","ECG and X-ray","Ultrasound","Reports explained by your doctor"], m:["NABL-accredited partner lab","Reports on WhatsApp"]}
+  ];
+  var ledger = document.getElementById('ledger'), detail = document.getElementById('detail'), cur = 0;
+  ledger.innerHTML = S.map(function(s,i){
+    return '<li'+(i===0?' class="on"':'')+'><button type="button" aria-controls="detail" aria-pressed="'+(i===0)+'" data-i="'+i+'"><span class="n">0'+(i+1)+'</span><span class="t">'+s.t+'<span class="d">'+s.d+'</span></span><span class="arr" aria-hidden="true">→</span></button></li>';
+  }).join('');
+  function show(i){
+    cur = i;
+    [].forEach.call(ledger.children,function(li,k){ li.classList.toggle('on',k===i); li.firstChild.setAttribute('aria-pressed',k===i); });
+    var s = S[i];
+    detail.innerHTML = '<span class="eyebrow" style="color:rgba(233,244,242,.65)">0'+(i+1)+' · '+s.t+'</span><h3>'+s.h+'</h3><ul>'+s.li.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul><div class="meta">'+s.m.map(function(x){return '<span>'+x.replace('[ADD]','<span class="ph">[ADD]</span>')+'</span>';}).join('')+'</div><a class="btn btn-cta" href="#book" data-cta="service-'+i+'">Book '+s.t+' <span class="dot">→</span></a>';
+  }
+  ledger.addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) show(+b.dataset.i); });
+  document.querySelectorAll('[data-svc]').forEach(function(a){ a.addEventListener('click',function(){ show(+a.dataset.svc); }); });
+  show(0);
+  detail.addEventListener('click',function(e){ var a=e.target.closest('a[data-cta^="service-"]'); if(a){ document.getElementById('f-svc').value = S[cur].t; }});
+
+  /* --- Google message match: ?h=key swaps H1 from an allow-list --- */
+  var H = {
+    "general-physician":["General physician near you, <em class='s'>same-day slots.</em>","Book a doctor's consultation for fever, BP, sugar or a full check-up. Confirmed on WhatsApp."],
+    "dentist":["A dentist you can book <em class='s'>for today.</em>","Check-ups, fillings, root canals and children's dental care, with clear fees before you visit."],
+    "dermatologist":["Dermatologist consultation, <em class='s'>doctor-led.</em>","Acne, pigmentation, hair fall and allergies, treated by a qualified dermatologist."],
+    "pediatrician":["A pediatrician who knows <em class='s'>your child.</em>","Vaccinations, growth checks and sick visits, with one record that follows your child."],
+    "diagnostics":["Lab tests and scans, <em class='s'>explained.</em>","Blood tests, ECG, X-ray and ultrasound in the same building. Reports on WhatsApp."]
+  };
+  var P = new URLSearchParams(location.search);
+  var hk = (P.get('h') || P.get('utm_term') || '').toLowerCase().replace(/[^a-z-]/g,'').replace(/\s+/g,'-');
+  if (H[hk]) { document.getElementById('h1').innerHTML = H[hk][0]; document.getElementById('hsub').textContent = H[hk][1]; }
+
+  /* --- Attribution capture --- */
+  var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','wbraid','gbraid'];
+  var stored = {};
+  try { stored = JSON.parse(sessionStorage.getItem('kinara_attr')||'{}'); } catch(e){}
+  keys.forEach(function(k){ if (P.get(k)) stored[k] = P.get(k); });
+  try { sessionStorage.setItem('kinara_attr', JSON.stringify(stored)); } catch(e){}
+  var hid = document.getElementById('hidden');
+  keys.concat(['landing_page','referrer','timestamp','variant']).forEach(function(k){
+    var i = document.createElement('input'); i.type='hidden'; i.name=k; i.id='h-'+k; i.value = stored[k]||''; hid.appendChild(i);
+  });
+  document.getElementById('h-landing_page').value = location.href.split('?')[0];
+  document.getElementById('h-referrer').value = document.referrer;
+  document.getElementById('h-variant').value = H[hk] ? 'google-'+hk : 'default';
+
+  /* --- WhatsApp --- */
+  var waUrl = 'https://wa.me/'+C.WHATSAPP+'?text='+encodeURIComponent('Hi Kinara Health, I would like to book an appointment.');
+  document.querySelectorAll('[data-wa]').forEach(function(a){
+    a.href = waUrl; a.target = '_blank'; a.rel='noopener';
+    a.addEventListener('click',function(){ gtag('event','whatsapp_click'); });
+  });
+
+  /* --- CTA + scroll events --- */
+  document.addEventListener('click',function(e){ var a=e.target.closest('[data-cta]'); if(a) gtag('event','cta_click',{location:a.dataset.cta}); });
+  var fired = {};
+  addEventListener('scroll',function(){
+    var p = (scrollY+innerHeight)/document.documentElement.scrollHeight;
+    [50,90].forEach(function(t){ if(p*100>=t && !fired[t]){ fired[t]=1; gtag('event','scroll',{percent_scrolled:t}); }});
+  },{passive:true});
+
+  /* --- Sticky bar hides while the form is in view --- */
+  var sticky = document.getElementById('sticky');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(en){ sticky.classList.toggle('hide', en[0].isIntersecting); },{threshold:.15}).observe(document.getElementById('leadForm'));
+  }
+
+  /* --- Quick visitor bar: collects 3 details, then opens the full form prefilled --- */
+  var q = document.getElementById('quickForm'), qPhone = document.getElementById('q-phone');
+  qPhone.addEventListener('input',function(){ qPhone.value = qPhone.value.replace(/\D/g,'').slice(0,10); });
+  q.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n = document.getElementById('q-name').value.trim(), p = qPhone.value, sv = document.getElementById('q-svc').value;
+    var msg = n.length<2 ? 'Enter the patient\'s name.' : !/^[6-9]\d{9}$/.test(p) ? 'Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.' : !sv ? 'Pick the service you need.' : '';
+    document.getElementById('e-quick').textContent = msg;
+    if (msg) return;
+    document.getElementById('f-name').value = n; document.getElementById('f-phone').value = p; document.getElementById('f-svc').value = sv;
+    gtag('event','quick_form_continue',{service:sv});
+    document.getElementById('book').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){ document.getElementById('f-age').focus({preventScroll:true}); }, 600);
+  });
+
+  /* --- Saving visitor submissions inside the published page (owner sees them in an inbox) --- */
+  var store = { db:null, uid:null };
+  function istTime(ms){ return new Date(ms).toLocaleString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }
+  function cell(t){ var td=document.createElement('td'); td.textContent = t==null?'':String(t); return td; }
+  if (window.claude && claude.use) {
+    Promise.all([claude.use('db'), claude.use('user')]).then(function(r){
+      var db = r[0], user = r[1];
+      if (!db || !user) return;
+      store.db = db;
+      return user.id().then(function(id){ store.uid = id; }).then(function(){
+        if (!user.isOwner || !user.isOwner()) return;
+        var box = document.getElementById('inbox'), body = document.getElementById('inboxBody'), empty = document.getElementById('inboxEmpty');
+        box.hidden = false;
+        db.collection('visitors').onSnapshot(function(snap){
+          var rows = [];
+          snap.docs.forEach(function(d){ var v=d.data()||{}; (v.requests||[]).forEach(function(x){ rows.push(x); }); });
+          rows.sort(function(a,b){ return (b.at||0)-(a.at||0); });
+          body.textContent = '';
+          rows.forEach(function(x){
+            var tr = document.createElement('tr');
+            [istTime(x.at), x.name, x.phone, x.service, x.preferred_day, x.age, x.visit_type, x.reason, x.utm_source || x.variant || 'direct'].forEach(function(v){ tr.appendChild(cell(v)); });
+            body.appendChild(tr);
+          });
+          empty.hidden = rows.length > 0;
+        }, function(){ empty.textContent = 'Submissions could not be loaded. Reload the page to try again.'; });
+      });
+    }).catch(function(){});
+  }
+  function saveToPage(data){
+    if (!store.db || !store.uid) return Promise.resolve(false);
+    var ref = store.db.doc('visitors/'+store.uid);
+    var entry = { at: Date.now() };
+    ['name','phone','email','age','service','preferred_day','visit_type','reason','utm_source','utm_campaign','variant'].forEach(function(k){ if (data[k]) entry[k] = String(data[k]).slice(0,400); });
+    return ref.get().then(function(snap){
+      var list = (snap.exists && (snap.data()||{}).requests) || [];
+      list = list.concat([entry]).slice(-20);
+      return ref.set({ requests: list, last_at: entry.at });
+    }).then(function(){ return true; }, function(){ return false; });
+  }
+
+  /* --- Full visitor form --- */
+  var f = document.getElementById('leadForm'), btn = document.getElementById('submitBtn');
+  var phone = document.getElementById('f-phone');
+  phone.addEventListener('input',function(){ phone.value = phone.value.replace(/\D/g,'').slice(0,10); });
+  function setErr(id,msg){ document.getElementById(id).textContent = msg||''; }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var ok = true;
+    var name = document.getElementById('f-name').value.trim();
+    setErr('e-name', name.length<2 ? 'Enter the patient\'s name so the doctor knows who to expect.' : ''); if(name.length<2) ok=false;
+    var ph = phone.value;
+    var phOk = /^[6-9]\d{9}$/.test(ph);
+    setErr('e-phone', phOk ? '' : 'Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.'); if(!phOk) ok=false;
+    var svc = document.getElementById('f-svc').value;
+    setErr('e-svc', svc ? '' : 'Pick the service you need.'); if(!svc) ok=false;
+    var age = document.getElementById('f-age').value;
+    var ageOk = age === '' || (+age >= 0 && +age <= 120);
+    setErr('e-age', ageOk ? '' : 'Enter an age between 0 and 120.'); if(!ageOk) ok=false;
+    var em = document.getElementById('f-email').value.trim();
+    var emOk = em === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+    setErr('e-email', emOk ? '' : 'Check the email address, or leave it blank.'); if(!emOk) ok=false;
+    var cons = document.getElementById('f-consent').checked;
+    setErr('e-consent', cons ? '' : 'Tick this box so we can confirm your slot on WhatsApp.'); if(!cons) ok=false;
+    if(!ok) return;
+
+    document.getElementById('h-timestamp').value = new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'});
+    btn.disabled = true; btn.firstChild.textContent = 'Booking… ';
+    var data = Object.fromEntries(new FormData(f)); data.phone = '+91'+ph;
+    try { sessionStorage.setItem('kinara_lead', JSON.stringify({name:data.name, service:data.service, day:data.preferred_day})); } catch(err){}
+
+    function done(){ location.href = 'thank-you.html'; }
+    function fail(){
+      btn.disabled=false; btn.firstChild.textContent='Book my appointment ';
+      setErr('e-form','We couldn\'t send your booking. Check your connection and try again, or message us on WhatsApp.');
+    }
+    var demo = C.FORM_ENDPOINT.indexOf('XXXX') !== -1;
+    saveToPage(data).then(function(saved){
+      if (demo) { return saved || !store.db ? done() : fail(); }
+      fetch(C.FORM_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)})
+        .then(done).catch(function(){ saved ? done() : fail(); });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
